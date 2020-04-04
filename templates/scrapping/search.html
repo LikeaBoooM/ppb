@@ -1,0 +1,23 @@
+{% extends 'scrapping/base.html' %}
+{% block content %}
+    <div class="flexbox container">
+        {% for post in car_list|slice:":10" %}
+        <div class="container">
+            <div class="card"> 
+                <div class="face face1">
+                    <div class="content">
+                        <img src="/static/scrapping/Images/sketch.png">
+                        <h3>{{ post.1 }}</h3> 
+                    </div>
+                </div>
+                <div class="face face2">
+                    <div class="content">
+                        <p>{{post.0|truncatewords:2}}</p>
+                        <a href="{{ post.2 }}">Go to car</a>
+                    </div>
+                </div>
+            </div> 
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
