@@ -8,7 +8,7 @@ class Car(models.Model):
     model = models.CharField(max_length=100)
 
     def __str__(self):
-        return self.name
+        return self.mark
 
 class Post(models.Model):
     title = models.CharField(max_length = 100)
