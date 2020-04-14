@@ -1,28 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 from bs4 import BeautifulSoup
-from .forms import CarForm
 from .models import Post
 import requests
 # Create your views here.
-
-posts = [
-    {
-        'author' : 'KURWAAAAt',
-        'title' : 'First title',
-        'content' : 'First content',
-    },
-    {
-        'author' : 'KURWAAAAt',
-        'title' : 'KURWAAAA',
-        'content' : 'KURWAAAAt'
-    },
-    {
-        'author' : 'KURWAAAAt',
-        'title' : 'Third title',
-        'content' : 'Third content'
-    }
-]
 
 def home(request):
     stuff_for_frontend ={
