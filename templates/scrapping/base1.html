@@ -18,15 +18,17 @@
             <ul class="nav__links">
                 <li><a href="{% url 'search' %}">Search</a></li>
                 <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>                
-                </ul>
-        
-        </nav>
-        <ul class="nav__links1">
-                <li><a href="#">Login</a></li>
-                <li><a href="{% url 'register' %}">Register</a></li>
-        </ul> 
-        <a class="cta" href="#">Contact</a>       
+                <li><a href="#">About</a></li>           
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+        {% else %}    
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li> 
+        {% endif %}
+            <a class="cta" href="#">Contact</a> 
+        </ul>
+        </nav>        
     </header>
     {% if messages %}
         {% for message in messages %}
@@ -36,26 +38,21 @@
         {% endfor %}
     {% endif %}
         {% block content %}
-        <div class="flexbox-container">
+        <div class="flexbox-container1">
         {% for post in posts %}
-        <div class="container"> 
-          <div class="card"> 
-                <div class="face face1">
-                    <div class="content">
-                        <img src="/static/scrapping/Images/sketch.png">
-                        <h3>{{ post.title }}</h3> 
-                    </div>
-                </div>
-                <div class="face face2">
-                    <div class="content">
-                        <p>{{post.content}}</p>
-                        <a href="/">Find post</a>
-                    </div>
-                </div>
-            </div> 
-          </div>
-        {%endfor%}
+        <div>
+        <article class="media content-section">
+            <div class="media-body">
+              <div class="article-metadata">
+                <a class="mr-2" href="#">{{ post.author }}</a>
+                <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
+              </div>
+              <h2><a class="article-title" href="#">{{ post.title }}</a></h2>
+              <p class="article-content">{{ post.content }}</p>
+            </div>
+          </article>
         </div>
+        {%endfor%}
         {% endblock %}
     </div>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>

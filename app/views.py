@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from bs4 import BeautifulSoup
-from .models import Post
 import requests
+from .models import Post
 # Create your views here.
 
 def home(request):

@@ -1,7 +1,3 @@
-li {
-  margin-left: 10px;
-}
-
 body{
   background-color: #fff;
 }
@@ -24,11 +20,13 @@ body{
   align-items: center;
   display: flex;
   background-color: #fff;
+  margin-top: 50px;
+  flex-direction: column;
 }
 
 .flexbox-container1 div{
   background-color: #fff;
- 
+  flex-basis: 100%;
 }
 .face{
   height: 200px;
@@ -273,3 +271,7 @@ header {
   .account-heading {
     font-size: 2.5rem;
   }
+  
+.loginuser{
+  margin-left: 100px;
+}
