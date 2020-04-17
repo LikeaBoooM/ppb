@@ -1,4 +1,5 @@
 from django import forms
+from . models import Comment
 
 
 class CarForm(forms.Form):
@@ -8,3 +9,7 @@ class CarForm(forms.Form):
     year_to = forms.ChoiceField(choices=[('2016', '2016'), ('2017', '2017')])
     fuel = forms.ChoiceField(choices=[('diesel','Olej napędowy'),('petrol','Benzyna')])
     
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('content',)

@@ -3,7 +3,9 @@ from bs4 import BeautifulSoup
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import requests
-from .models import Post
+from django.shortcuts import get_object_or_404 , HttpResponseRedirect
+from .models import Post, Comment
+from . forms import CommentForm 
 from . import scraper
 
 
@@ -13,6 +15,31 @@ def home(request):
     }
     return render(request, 'scrapping/base.html',stuff_for_frontend)
 
+def post_detail_with_comment(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    comments = Comment.objects.filter(post=post).order_by('-id')
+
+    if request.method == "POST":
+        commentForm = CommentForm(request.POST or none)
+        if commentForm.is_valid():
+            content = request.POST.get('content')
+            comment = Comment.objects.create(post = post, author = request.user, content = content)
+            comment.save()
+
+            return HttpResponseRedirect(post.get_absolute_url())
+    else :
+        commentForm = CommentForm()
+
+    
+    stuff_for_frontend ={
+        'object' : post,
+        'comments' : comments,
+        'commentForm' : commentForm,
+    }
+
+    return render(request, 'app/post_detail.html', stuff_for_frontend)
+
+
 class PostListView(ListView):
     model = Post
     template_name = 'scrapping/base.html'
@@ -21,7 +48,7 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
-    
+
 
 class PostCreateView(LoginRequiredMixin, CreateView):
     model = Post
