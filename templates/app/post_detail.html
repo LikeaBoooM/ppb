@@ -1,4 +1,5 @@
 {% extends 'scrapping/base1.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
     <div class="flexbox-container1">
     <div>
@@ -20,8 +21,8 @@
         </div>
         </article>
     </div>
-    </div>
     <hr>
+        Comments : 
         {% for comment in comments %}
             <div class="comment">
                 <div class="date">{{ comment.date_posted }}</div>
@@ -31,13 +32,14 @@
         {% empty %}
             <p>No comments here yet :(</p>
         {% endfor %}
-
-{% if user.is_authenticated %}
-        
-    <form method="post">
-        {% csrf_token %}
-        {{ commentForm.as_p }}
-    <input type="submit" value="Submit" class="btn btn-outline-success">
-    </form>
-{% endif %}
+        {% if user.is_authenticated %}
+        Dodaj komentarz cioto
+        <form method="post">
+            {% csrf_token %}
+            {{ commentForm.as_p }}
+        <input type="submit" value="Submit" class="btn btn-outline-success">
+        </form>
+    {% endif %}
+    </div>
+    
 {% endblock %}

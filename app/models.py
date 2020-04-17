@@ -23,3 +23,24 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content
+
+class NewCar(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    mark = models.CharField(max_length=100)
+    content = models.TextField()
+    date_posted = models.DateTimeField(default=timezone.now)
+    image = models.ImageField(default='tire.png', upload_to='profile_pics')
+
+
+    def __str__(self):
+        return self.mark
+
+    def get_absolute_url(self):
+        return reverse('home')
+
+class Images(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='images/', blank=True, null=True)
+    
+
+   

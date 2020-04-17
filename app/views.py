@@ -4,14 +4,15 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import requests
 from django.shortcuts import get_object_or_404 , HttpResponseRedirect
-from .models import Post, Comment
-from . forms import CommentForm 
+from .models import Post, Comment, Images, NewCar
+from . forms import CommentForm, NewCarForm
 from . import scraper
 
 
 def home(request):
     stuff_for_frontend ={
         'posts' : Post.objects.all(),
+        'cars' : NewCar.objects.all(),
     }
     return render(request, 'scrapping/base.html',stuff_for_frontend)
 
@@ -48,6 +49,14 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+
+class CarCreateView(LoginRequiredMixin, CreateView):
+    model = NewCar
+    fields = ['mark','content','image',]
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 
 class PostCreateView(LoginRequiredMixin, CreateView):
