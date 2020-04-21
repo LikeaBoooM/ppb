@@ -1,5 +1,5 @@
 body{
-   background-color: #333;
+   background: #333;
 }
 .flexbox-container{
    display: flex;
@@ -7,11 +7,22 @@ body{
    justify-content: space-around; 
    align-items: center;
    display: flex;
+   background-color: #333;
+   margin-bottom: 5rem;
+}
+.card1 {
+   background-color: #333;
+   margin: 5rem;
+   border : none;
 }
 
+.titleh1{
+   text-align: center;
+   color: #fff;
+  
+}
 .flexbox-container div{
-   flex-basis: 250px;
-   margin-right: 10px;
+   flex-basis: 100px;
 }
 .flexbox-container1{
    display: flex;
@@ -19,9 +30,10 @@ body{
    justify-content: space-around; 
    align-items: center;
    display: flex;
-   background-color: #fff;
-   flex-direction: column;
+   background-color: #333;
+   flex-direction: row;
 }
+
 
 .article-img {
    height: 65px;
@@ -36,27 +48,28 @@ body{
    margin-bottom: 16px;
  }
 
-.flexbox-container1 div{
-   background-color: #fff;
-  
-}
-.face{
-   height: 200px;
-}
-
-.content img{
-   margin-left: 78px;
-}
 .container
 {
    width: 1000px;
    position: relative;
-   margin-bottom: 10px;
    background-color: #333;
    align-items: center;
    justify-content: center;
    display: flex;
 }
+.containerblog
+{
+   position: relative;
+   margin-bottom: 10px;
+   background: linear-gradient(38deg, rgb(67, 160, 71) -30%, rgb(29, 233, 182) 100%) transparent;
+   margin: 0;
+   padding : 0;
+   min-height: 50vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
 .container-reg
 {
    width: 500px;
@@ -67,9 +80,17 @@ body{
    justify-content: center;
    display: flex;
 }
+.container1 .card1{
+   position: relative;
+}
 
-
-.container .card .face.face1{
+.container .card1 .face{
+   width: 300px;
+   height: 200px;
+   transition: 0.5s;
+   
+}
+.container1 .card1 .face.face1{
    position: relative;
    background: #333;
    display: flex;
@@ -77,13 +98,24 @@ body{
    align-items: center;
    z-index: 1;
    transform: translateY(100px);
-   
 }
-.container .card:hover .face.face1{
-   background: rgba(0, 136, 169, 1) ;
+
+.container .card1 .face.face1{
+   position: relative;
+   background: #333;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1;
+   transform: translateY(100px);
+   box-sizing: border-box;
+   box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+}
+.container .card1:hover .face.face1{
+   background: rgb(79, 12, 134) ;
    transform: translateY(0);
 }
-.container .card .face.face2{
+.container .card1 .face.face2{
    position: relative;
    background: #fff;
    display: flex;
@@ -95,14 +127,26 @@ body{
    transform: translateY(-100px);
    
 }
-.container .card:hover .face.face2{
+.container1 .card1 .face.face2{
+   position: relative;
+   background: #fff;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   padding: 20px;
+   box-sizing: border-box;
+   box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+   transform: translateY(-100px);
+   
+}
+.container .card1:hover .face.face2{
    transform: translateY(0);
 }
-.container .card .face.face2 p {
+.container .card1 .face.face2 p {
    margin :0;
    padding: 0;
 }
-.container .card .face.face2 .content a{
+.container .card1 .face.face2 .content a{
    margin: 15px 0 0;
    display: inline-block;
    text-decoration: none;
@@ -111,23 +155,23 @@ body{
    padding: 5px;
    border : 1px solid #333;
 }
-.container .card .face.face2 .content a:hover{
-   background: #333;
+.container .card1 .face.face2 .content a:hover{
+   background: rgb(79, 12, 134) ;
    color: #fff;
 }
-.container .card .face.face1 .content{
+.container .card1 .face.face1 .content{
    opacity: 0.2;
    transition: 0.5s;
 }
-.container .card:hover .face.face1 .content
+.container .card1:hover .face.face1 .content
 {
    opacity: 1;
 }
-.container .card .face.face1 .content img
+.container .card1 .face.face1 .content img
 {
    max-width: 100px;
 }
-.container .card .face.face1 .content h3
+.container .card1 .face.face1 .content h3
 {
    margin: 10px 0 0;
    padding: 0;
@@ -141,7 +185,7 @@ body{
   padding: 0;
 }
 
-header {
+header1 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -157,14 +201,15 @@ header {
   list-style: none;
   display: flex;
   background-color: #24252a;
+  margin-top: 9px;
 }
 .nav__links1 {
   list-style: none;
   display: flex;
   margin-left: 100px;
+  margin-top: 9px;
 }
 
-.nav__links a,
 .nav__links1 a,
 .cta,
 .overlay__content a {
@@ -177,22 +222,27 @@ header {
 .nav__links li,
 .nav__links1 li {
   padding: 0px 20px;
+  margin-top: 9px;
 }
 
 .nav__links li a,
+.cta a,
 .nav__links1 li a {
   transition: all 0.3s ease 0s;
+  color: #edf0f1;
+  text-decoration: none;
 }
 
 .nav__links li a:hover,
 .nav__links1 li a:hover {
-  color: #0088a9;
+  color:  rgb(79, 12, 134) ;
 }
 
 .cta {
+  
   margin-left: 20px;
   padding: 9px 25px;
-  background-color: rgba(0, 136, 169, 1);
+  background-color:  rgb(79, 12, 134) ;
   border: none;
   border-radius: 50px;
   cursor: pointer;
@@ -200,8 +250,19 @@ header {
 }
 
 .cta:hover {
-  background-color: rgba(0, 136, 169, 0.8);
+  background-color:  rgb(79, 12, 134) ;
 }
 .loginuser{
    margin-left: 100px;
+}
+
+#footer {
+   text-align: center; 
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   height: 15vh;  
+   color: rgba(255, 255, 255, 0.8);
+   background: linear-gradient(45deg, rgb(48, 63, 159), rgb(123, 31, 162));
+   overflow: auto;
 }

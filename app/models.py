@@ -25,6 +25,7 @@ class Comment(models.Model):
         return self.content
 
 class NewCar(models.Model):
+    title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     mark = models.CharField(max_length=100)
     content = models.TextField()
@@ -39,8 +40,12 @@ class NewCar(models.Model):
         return reverse('home')
 
 class Images(models.Model):
-    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    post = models.ForeignKey(NewCar, on_delete=models.CASCADE)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
     
+    def __str__(self):
+        return self.post.title + " Image"
+
+   
 
    

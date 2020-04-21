@@ -3,10 +3,11 @@ from bs4 import BeautifulSoup
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import requests
-from django.shortcuts import get_object_or_404 , HttpResponseRedirect
+from django.shortcuts import get_object_or_404 , HttpResponseRedirect, redirect
 from .models import Post, Comment, Images, NewCar
 from . forms import CommentForm, NewCarForm
 from . import scraper
+from django.forms import modelformset_factory
 
 
 def home(request):
@@ -40,6 +41,36 @@ def post_detail_with_comment(request, pk):
 
     return render(request, 'app/post_detail.html', stuff_for_frontend)
 
+def newCarTwo(request):
+    ImageFormset =  modelformset_factory(Images, fields=('image',), extra=4)
+    if request.method == 'POST':
+        form = NewCarForm(request.POST)
+        formset = ImageFormset(request.POST or None, request.FILES or None)
+        if form.is_valid() and formset.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+
+            for f in formset:
+                try:
+                    photo = Images(post=post, image=f.cleaned_data['image'])
+                    photo.save()
+                    
+                except Exception as e:
+                    break
+            return redirect('home')
+    else :
+        form = NewCarForm()
+        formset = ImageFormset(queryset=Images.objects.none())
+        
+    
+    stuff_for_frontend = {
+        'form' : form,
+        'formset' : formset,
+    }
+
+    return render(request, 'app/newcar_form.html', stuff_for_frontend)
+
 
 class PostListView(ListView):
     model = Post
@@ -52,7 +83,7 @@ class PostDetailView(DetailView):
 
 class CarCreateView(LoginRequiredMixin, CreateView):
     model = NewCar
-    fields = ['mark','content','image',]
+    fields = ('mark', 'image', 'content',)
 
     def form_valid(self, form):
         form.instance.author = self.request.user
