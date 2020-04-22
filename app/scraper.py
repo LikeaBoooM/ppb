@@ -4,10 +4,10 @@ import requests
 def scrap():
     BASE_URL = "https://www.olx.pl/motoryzacja/samochody/"
     FILTER_URL = "?search%5Bfilter_float_price%3Afrom%5D={}&search%5Bfilter_float_price%3Ato%5D={}&search%5Bfilter_enum_petrol%5D%5B0%5D={}&search%5Bfilter_enum_transmission%5D%5B0%5D={}"
-    BRAND = 'Audi'
-    MODEL = 'a4'
+    BRAND = 'bmw'
+    MODEL = 'seria-3'
     MODEL_URL = "{}/{}/".format(BRAND,MODEL)
-    PRICE_FROM = 30000 
+    PRICE_FROM = 5000 
     PRICE_TO =  100000
     PETROL = 'diesel'
     SHIFT = "manual"
