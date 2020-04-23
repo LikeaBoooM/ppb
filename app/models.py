@@ -6,6 +6,24 @@ from django.utils.translation import gettext as _
 from PIL import Image
 
 
+DIESEL = 'diesel'
+BENZIN = 'benzin'
+GAS = 'gas'
+AUTOMAT = 'automat'
+MANUAL = 'manual'
+
+PETROL = [
+    (DIESEL, _('Diesel')),
+    (BENZIN, _('Benzin')),
+    (GAS, _('Gas')),
+]
+
+GEAR = [
+    (AUTOMAT, _('Automat')),
+    (MANUAL, _('Manual')),
+]
+
+
 class Post(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField()
@@ -28,23 +46,6 @@ class Comment(models.Model):
         return self.content
 
 class NewCar(models.Model):
-    DIESEL = 'diesel'
-    BENZIN = 'benzin'
-    GAS = 'gas'
-    AUTOMAT = 'automat'
-    MANUAL = 'manual'
-
-    PETROL = [
-       (DIESEL, _('Diesel')),
-       (BENZIN, _('Benzin')),
-       (GAS, _('Gas')),
-    ]
-
-    GEAR = [
-       (AUTOMAT, _('Automat')),
-       (MANUAL, _('Manual')),
-    ]
-
     title = models.CharField(max_length=100)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     mark = models.CharField(max_length=100)

@@ -1,18 +1,18 @@
 from bs4 import BeautifulSoup
 import requests
 
-def scrap():
+def scrap(marka,model,paliwo,skrzynia):
     BASE_URL = "https://www.olx.pl/motoryzacja/samochody/"
     FILTER_URL = "?search%5Bfilter_float_price%3Afrom%5D={}&search%5Bfilter_float_price%3Ato%5D={}&search%5Bfilter_enum_petrol%5D%5B0%5D={}&search%5Bfilter_enum_transmission%5D%5B0%5D={}"
-    BRAND = 'bmw'
-    MODEL = 'seria-3'
-    MODEL_URL = "{}/{}/".format(BRAND,MODEL)
+    MARK = marka
+    MODEL = model
+    MODEL_URL = "{}/{}/".format(MARK,MODEL)
     PRICE_FROM = 5000 
     PRICE_TO =  100000
-    PETROL = 'diesel'
-    SHIFT = "manual"
+    PETROL = paliwo
+    GEAR = skrzynia
 
-    URL = BASE_URL + MODEL_URL + FILTER_URL.format(PRICE_FROM,PRICE_TO,PETROL,SHIFT)
+    URL = BASE_URL + MODEL_URL + FILTER_URL.format(PRICE_FROM,PRICE_TO,PETROL,GEAR)
     FINAL_URL = URL.lower()
 
     response = requests.get(FINAL_URL)

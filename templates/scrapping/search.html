@@ -1,5 +1,19 @@
 {% extends 'scrapping/base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
+
+<div class="flexbox-container3">
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset class="form-group">
+      <legend class="border-bottom mb-4">Find your dream car</legend>
+      {{form|crispy}}
+  </legend>
+  <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Find</button>
+  </div>
+</form>
+</div>
 <div class="flexbox-container">
     <table class="table" style="margin-top: 2vh;">
         <thead>

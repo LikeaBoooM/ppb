@@ -15,4 +15,5 @@ class CommentForm(forms.ModelForm):
 
 class SearchForm(forms.ModelForm):
     class Meta:
+        model = Search
         fields = ['mark','model', 'year_from', 'year_to', 'petrol', 'gear',]

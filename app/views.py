@@ -124,7 +124,9 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
 
 def search(request):
-    form = SearchForm(request.POST)
+    car_list = []
+
+    form = SearchForm(request.POST or None)
     if form.is_valid():
         mark = form.cleaned_data['mark']
         model = form.cleaned_data['model']
@@ -133,8 +135,11 @@ def search(request):
         petrol = form.cleaned_data['petrol']
         gear = form.cleaned_data['gear']
 
-        car_list = scraper.scrap()
-
-    car_list = scraper.scrap()
-    print(car_list)
+        car_list = scraper.scrap(mark,model,petrol,gear)
+    else :
+        form = SearchForm()
+        
+        print(car_list)
+        
+ 
     return render(request, 'scrapping/search.html', {'car_list': car_list, 'form': form,})
