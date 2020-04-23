@@ -54,10 +54,10 @@ class NewCar(models.Model):
     price = models.PositiveIntegerField()
     petrol = models.CharField(choices=PETROL, max_length=32)
     gear = models.CharField(choices=GEAR, max_length=32)
-     
-
     date_posted = models.DateTimeField(default=timezone.now)
-    image = models.ImageField(default='tire.png', upload_to='profile_pics')
+    image = models.ImageField(
+        upload_to='profile_pics/',
+        default='profile_pics/default.jpg')
 
 
     def __str__(self):
@@ -66,13 +66,16 @@ class NewCar(models.Model):
     def get_absolute_url(self):
         return reverse('home')
 
+    def upload_image(self, filename):
+        return 'post/{}/{}'.format(self.title, filename)
+
     def save(self):
         super().save()
         
         img = Image.open(self.image.path)
     
         if img.height > 300 or img.width > 300:
-            output_size = (300, 300)
+            output_size = (150, 150)
             img.thumbnail(output_size)
             img.save(self.image.path) 
 
@@ -82,6 +85,19 @@ class Images(models.Model):
     
     def __str__(self):
         return self.post.title + " Image"
+
+class Search(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    mark = models.CharField(max_length=100)
+    model = models.CharField(null=True, max_length=32)
+    year_from = models.CharField(default=2010, max_length=32)
+    year_to = models.CharField(default=2010, max_length=32)
+    petrol = models.CharField(choices=PETROL, max_length=32)
+    gear = models.CharField(choices=GEAR, max_length=32)
+    date_posted = models.DateTimeField(default=timezone.now)
+    
+    def __str__(self):
+        return self.post.author
 
    
 

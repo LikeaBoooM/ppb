@@ -1,23 +1,31 @@
 {% extends 'scrapping/base.html' %}
 {% block content %}
 <div class="flexbox-container">
-    {% for post in car_list|slice:":10" %}
-    <div class="container"> 
-      <div class="card"> 
-            <div class="face face1">
-                <div class="content">
-                    <img src="{{post.3}}">
-                    <h3>{{ post.0 }}</h3> 
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p>{{post.1}}</p>
-                    <a href="{{post.2}}">Find post</a>
-                </div>
-            </div>
-        </div> 
-      </div>
-    {%endfor%}
-    </div>
+    <table class="table" style="margin-top: 2vh;">
+        <thead>
+        <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Mark</th>
+            <th scope="col">Model</th>
+            <th scope="col">Year</th>
+            <th scope="col">Petrol</th>
+            <th scope="col">Gear</th>
+            <th scope="col">Price</th>
+            </tr> 
+        </thead>
+        {% for post in car_list|slice:":10" %}
+        <tbody>
+          <tr>
+            <th scope="row"><img src="{{ post.3 }}" alt=""></th>
+            <td>{{ post.0 }}</td>
+            <td>{{ post.0 }}</td>
+            <td>{{ post.0 }}</td>
+            <td>{{ post.0 }}</td>
+            <td>{{ post.1 }}</td>
+            <td><a href="{{post.2}}"><button class="btn btn-outline-info" type="submit">Go to car</button></a></td>
+          </tr>
+        </tbody>
+        {%endfor%}
+        </table>
+        </div>
 {% endblock %}

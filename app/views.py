@@ -5,7 +5,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 import requests
 from django.shortcuts import get_object_or_404 , HttpResponseRedirect, redirect
 from .models import Post, Comment, Images, NewCar
-from . forms import CommentForm, NewCarForm
+from . forms import CommentForm, NewCarForm, SearchForm
 from . import scraper
 from django.forms import modelformset_factory
 
@@ -44,7 +44,7 @@ def post_detail_with_comment(request, pk):
 def newCarTwo(request):
     ImageFormset =  modelformset_factory(Images, fields=('image',), extra=4)
     if request.method == 'POST':
-        form = NewCarForm(request.POST)
+        form = NewCarForm(request.POST or None, request.FILES or None)
         formset = ImageFormset(request.POST or None, request.FILES or None)
         if form.is_valid() and formset.is_valid():
             post = form.save(commit=False)
@@ -124,6 +124,17 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     
 
 def search(request):
+    form = SearchForm(request.POST)
+    if form.is_valid():
+        mark = form.cleaned_data['mark']
+        model = form.cleaned_data['model']
+        year_from = form.cleaned_data['year_from']
+        year_to = form.cleaned_data['year_to']
+        petrol = form.cleaned_data['petrol']
+        gear = form.cleaned_data['gear']
+
+        car_list = scraper.scrap()
+
     car_list = scraper.scrap()
     print(car_list)
-    return render(request, 'scrapping/search.html', {'car_list': car_list})
+    return render(request, 'scrapping/search.html', {'car_list': car_list, 'form': form,})
