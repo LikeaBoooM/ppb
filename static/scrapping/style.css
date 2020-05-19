@@ -5,223 +5,6 @@ body{
    color: rgba(207, 174, 158, 0.767);
 }
 
-
-footer{
-	background-color:#33004B !important;
-	overflow:hidden;
-}
-
-img {
-	
-}
-
-.zawartoscBoxaStopki{
-	color:white;
-	position:absolute;
-	width:95%;
-	height:92%;
-	margin: 0;
-	top: 25%;
-	-ms-transform: translateY(-10%);
-	transform: translateY(-10%);
-}
-
-.zawartoscBoxaStopki2{
-	color:white;
-	position:absolute;
-	width:95%;
-	height:92%;
-	margin: 0;
-	top: 20%;
-	-ms-transform: translateY(-10%);
-	transform: translateY(-10%);
-}
-
-.logoStopki{
-	width:90px;
-}
-
-#napislogostopka{
-	margin:0 auto;
-	font-family: Brush Script MT;
-	font-size:5vh !important;
-
-}
-
-#napislogostopka1{
-	margin:0 auto;
-	font-family: Candara;
-	font-size:4vh;
-	font-weight:bold;
-}
-#napislogostopka2{
-	margin:0 auto;
-	font-family: Candara;
-	font-size:2.7vh;
-	font-weight:300;
-}
-
-.testowa{
-height:64px;
-
-
-}
-
-.testowa1{
-
-background: url("/media/images/fbb.png") no-repeat center center;
-
-}
-.testowa2{
-
-background: url("/media/images/linn.png") no-repeat center center;
-
-}
-.testowa3{
-
-background: url("/media/images/twiterr.png") no-repeat center center;
-
-}
-.testowa4{
-
-background: url("/media/images/insta.png") no-repeat center center;
-
-}
-
-@media screen and (max-width: 1400px) {	
-	.zawartoscBoxaStopki{
-	  top:20%;
-	}
-	.zawartoscBoxaStopki2{
-	  top:15%;
-	}
-	.logoStopki{
-		width:70px;
-		
-	}
-	#napislogostopka2{
-	font-size:2.5vh;
-	}
-	
-	.testowa{
-		background-size: auto 100%;
-		height:54px;
-	}
-	
-}
-
-@media screen and (max-width: 1111px) {	
-	#napislogostopka2{
-	font-size:2.3vh;
-	}
-}
-
-@media screen and (max-width: 991px) {	
-	.zawartoscBoxaStopki{
-	  top:35%;
-	}
-	.zawartoscBoxaStopki2{
-	  top:30%;
-	}
-	#napislogostopka2{
-	font-size:3vh;
-	}
-	#napislogostopka1{
-	font-size:5vh;
-	}
-	#napislogostopka{
-	font-size:8vh !important;
-	}
-	.testowa{
-		margin-top:20px;
-		background-size: auto 100%;
-		height:64px;
-	}
-
-
-}
-
-@media screen and (max-width: 760px) {	
-	.zawartoscBoxaStopki{
-	  top:35%;
-	}
-	.zawartoscBoxaStopki2{
-	  top:30%;
-	}
-	#napislogostopka2{
-	font-size:2.5vh;
-	}
-	#napislogostopka1{
-	font-size:4.5vh;
-	}
-	#napislogostopka{
-	font-size:6vh !important;
-	}
-	.testowa{
-		margin-top:20px;
-		background-size: auto 100%;
-		height:64px;
-	}
-}
-
-@media screen and (max-width: 625px) {	
-	.zawartoscBoxaStopki{
-	  top:25%;
-	}
-	.zawartoscBoxaStopki2{
-	  top:20%;
-	}
-	#napislogostopka2{
-	font-size:2.5vh;
-	}
-	#napislogostopka1{
-	font-size:4.5vh;
-	}
-	#napislogostopka{
-	font-size:6vh !important;
-	}
-	.testowa{
-		margin-top:20px;
-		background-size: auto 100%;
-		height:64px;
-	}
-}
-
-@media screen and (max-width: 500px) {	
-	.zawartoscBoxaStopki{
-	  top:20%;
-	}
-	.zawartoscBoxaStopki2{
-	  top:15%;
-	}
-	#napislogostopka2{
-	font-size:2.0vh;
-	}
-	#napislogostopka1{
-	font-size:4.0vh;
-	}
-	#napislogostopka{
-	font-size:5vh !important;
-	}
-	.testowa{
-		margin-top:0px;
-		background-size: auto 100%;
-		height:54px;
-	}
-}
-
-@media screen and (max-width: 400px) {	
-
-	#napislogostopka{
-	font-size:4.5vh !important;
-	}
-	.testowa{
-		margin-top:0px;
-		background-size: auto 100%;
-		height:44px;
-	}
-
-}
 .zdjpost{
 	width:180px;
 	height:180px;
@@ -235,6 +18,16 @@ background: url("/media/images/insta.png") no-repeat center center;
 	right:0px;
 
 }
+
+a.button {
+   -webkit-appearance: button;
+   -moz-appearance: button;
+   appearance: button;
+
+   text-decoration: none;
+   color: initial;
+}
+
 .zdjodpowiedzi{
 	width:100px;
 	height:100px;
@@ -655,4 +448,232 @@ label{
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 18px;
+}
+
+
+
+footer{
+	background-color:#33004B !important;
+	overflow:hidden;
+}
+
+img {
+	width:100%
+}
+
+.zawartoscBoxaStopki{
+	color:white;
+	position:absolute;
+	width:95%;
+	height:92%;
+	
+	margin: 0;
+	top: 25%;
+	-ms-transform: translateY(-10%);
+	transform: translateY(-10%);
+}
+
+.zawartoscBoxaStopki2{
+	color:white;
+	position:absolute;
+	width:95%;
+	height:92%;
+	
+	margin: 0;
+	top: 20%;
+	-ms-transform: translateY(-10%);
+	transform: translateY(-10%);
+}
+
+
+
+
+.logoStopki{
+	width:90px;
+	
+}
+
+
+
+
+#napislogostopka{
+	margin:0 auto;
+	font-family: Brush Script MT;
+	font-size:5vh !important;
+
+}
+
+#napislogostopka1{
+	margin:0 auto;
+	font-family: Candara;
+	font-size:4vh;
+	font-weight:bold;
+}
+#napislogostopka2{
+	margin:0 auto;
+	font-family: Candara;
+	font-size:2.7vh;
+	font-weight:300;
+}
+
+.testowa{
+height:64px;
+
+
+}
+
+.testowa1{
+
+background: url("/media/images/fbb.png") no-repeat center center;
+
+}
+.testowa2{
+
+background: url("/media/images/linn.png") no-repeat center center;
+
+}
+.testowa3{
+
+background: url("/media/images/twiterr.png") no-repeat center center;
+
+}
+.testowa4{
+
+background: url("/media/images/insta.png") no-repeat center center;
+
+}
+
+@media screen and (max-width: 1400px) {	
+	.zawartoscBoxaStopki{
+	  top:20%;
+	}
+	.zawartoscBoxaStopki2{
+	  top:15%;
+	}
+	.logoStopki{
+		width:70px;
+		
+	}
+	#napislogostopka2{
+	font-size:2.5vh;
+	}
+	
+	.testowa{
+		background-size: auto 100%;
+		height:54px;
+	}
+	
+}
+
+@media screen and (max-width: 1111px) {	
+	#napislogostopka2{
+	font-size:2.3vh;
+	}
+}
+
+@media screen and (max-width: 991px) {	
+	.zawartoscBoxaStopki{
+	  top:35%;
+	}
+	.zawartoscBoxaStopki2{
+	  top:30%;
+	}
+	#napislogostopka2{
+	font-size:3vh;
+	}
+	#napislogostopka1{
+	font-size:5vh;
+	}
+	#napislogostopka{
+	font-size:8vh !important;
+	}
+	.testowa{
+		margin-top:20px;
+		background-size: auto 100%;
+		height:64px;
+	}
+
+
+}
+
+@media screen and (max-width: 760px) {	
+	.zawartoscBoxaStopki{
+	  top:35%;
+	}
+	.zawartoscBoxaStopki2{
+	  top:30%;
+	}
+	#napislogostopka2{
+	font-size:2.5vh;
+	}
+	#napislogostopka1{
+	font-size:4.5vh;
+	}
+	#napislogostopka{
+	font-size:6vh !important;
+	}
+	.testowa{
+		margin-top:20px;
+		background-size: auto 100%;
+		height:64px;
+	}
+}
+
+@media screen and (max-width: 625px) {	
+	.zawartoscBoxaStopki{
+	  top:25%;
+	}
+	.zawartoscBoxaStopki2{
+	  top:20%;
+	}
+	#napislogostopka2{
+	font-size:2.5vh;
+	}
+	#napislogostopka1{
+	font-size:4.5vh;
+	}
+	#napislogostopka{
+	font-size:6vh !important;
+	}
+	.testowa{
+		margin-top:20px;
+		background-size: auto 100%;
+		height:64px;
+	}
+}
+
+@media screen and (max-width: 500px) {	
+	.zawartoscBoxaStopki{
+	  top:20%;
+	}
+	.zawartoscBoxaStopki2{
+	  top:15%;
+	}
+	#napislogostopka2{
+	font-size:2.0vh;
+	}
+	#napislogostopka1{
+	font-size:4.0vh;
+	}
+	#napislogostopka{
+	font-size:5vh !important;
+	}
+	.testowa{
+		margin-top:0px;
+		background-size: auto 100%;
+		height:54px;
+	}
+}
+
+@media screen and (max-width: 400px) {	
+
+	#napislogostopka{
+	font-size:4.5vh !important;
+	}
+	.testowa{
+		margin-top:0px;
+		background-size: auto 100%;
+		height:44px;
+	}
+
 }

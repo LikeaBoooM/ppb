@@ -11,7 +11,7 @@ class NewCarForm(forms.ModelForm):
     class Meta:
         model = NewCar
         year = forms.fields.DateField(widget=forms.widgets.DateInput(attrs={'type': 'date'}))
-        fields = ['mark','model', 'content', 'year', 'price', 'image', 'petrol', 'gear',]
+        fields = ['mark','model', 'content','link', 'year', 'price', 'image', 'petrol', 'gear',]
 
 class CommentForm(forms.ModelForm):
     class Meta:

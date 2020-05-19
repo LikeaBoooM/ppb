@@ -61,13 +61,13 @@ class NewCar(models.Model):
     image = models.ImageField(
         upload_to='profile_pics/',
         default='profile_pics/default.jpg')
-
+    link = models.CharField(max_length=150, default=None)
 
     def __str__(self):
         return self.mark
 
     def get_absolute_url(self):
-        return reverse('home')
+        return reverse('cars')
 
     def upload_image(self, filename):
         return 'post/{}/{}'.format(self.title, filename)
@@ -78,7 +78,7 @@ class NewCar(models.Model):
         img = Image.open(self.image.path)
     
         if img.height > 300 or img.width > 300:
-            output_size = (150, 150)
+            output_size = (200, 200)
             img.thumbnail(output_size)
             img.save(self.image.path) 
 

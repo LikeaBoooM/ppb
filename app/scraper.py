@@ -7,7 +7,7 @@ def scrap(marka,model,paliwo,skrzynia):
     MARK = marka
     MODEL = model
     MODEL_URL = "{}/{}/".format(MARK,MODEL)
-    PRICE_FROM = 5000 
+    PRICE_FROM = 1
     PRICE_TO =  100000
     PETROL = paliwo
     GEAR = skrzynia

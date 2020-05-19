@@ -109,6 +109,7 @@ class CarCreateView(LoginRequiredMixin,UserPassesTestMixin, CreateView):
     model = NewCar
     fields = ('mark', 'image', 'content',)
 
+
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
@@ -138,9 +139,9 @@ class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
             return True
         return False
 
-class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+class PostDeleteView(LoginRequiredMixin, DeleteView):
     model = Post
-    success_url = '/'
+    success_url = '../../../posts'
 
     def test_func(self):
         post = self.get_object()
@@ -152,6 +153,7 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
 def search(request):
     car_list = []
     form = SearchForm(request.POST or None)
+    dane = []
 
     if form.is_valid():
         mark = form.cleaned_data['mark']
@@ -165,11 +167,12 @@ def search(request):
         search = form.save(commit=False)
         search.author = request.user
         search.save()
-        
+        dane.append(mark)
+        dane.append(model)
+        dane.append(petrol)
+        dane.append(gear)
     else :
         form = SearchForm()
         
-        print(car_list)
-        
  
-    return render(request, 'scrapping/search.html', {'car_list': car_list, 'form': form,})
+    return render(request, 'scrapping/search.html', {'car_list': car_list, 'form': form, 'dane': dane})

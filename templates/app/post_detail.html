@@ -44,9 +44,9 @@
             <img class="zdjodpowiedzi" src="{{ comment.author.profile.image.url }}" alt="">
           </>
         </div>
-        <div class="col wierszzapytania pt-2 pl-4 pl-sm-0" style="font-size: 24px;">
+        <div class="col wierszzapytania pt-2 pl-4 pl-sm-0" style="font-size: 18px; margin-left: 3px;">
           <div class="row pl-3">{{ comment.author }} odpowiedział(a):</div>
-          <div class="row pr-sm-5 pr-3 pl-3 pb-3" style="font-size: 24px;">{{ comment.content|linebreaks }}</div>
+          <div class="row pr-sm-5 pr-3 pl-3 pb-3" style="font-size: 22px;">{{ comment.content|linebreaks }}</div>
         </div>
       </div>
       {% endfor %}

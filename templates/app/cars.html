@@ -11,6 +11,7 @@
         <th scope="col">Petrol</th>
         <th scope="col">Gear</th>
         <th scope="col">Price</th>
+        <th scope="col">Link</th>
         </tr> 
     </thead>
     {% for car in cars %} 
@@ -23,8 +24,10 @@
         <td>{{ car.petrol }}</td>
         <td>{{ car.gear }}</td>
         <td>{{ car.price }}</td>
+        <td><a href="{{ car.link }}" class="btn">Go to car</a></td>
       </tr>
     </tbody>
+    
       {%endfor%}
 </table>
 {% endblock %}
