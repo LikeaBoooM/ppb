@@ -14,14 +14,12 @@
      
 </head>
 <body>
-    <header1>
-        <a class="logo" href="/"><img src="/static/scrapping/Images/logo.svg" alt="logo"></a>
+    <header>
+        <a class="logo" href="/"><img src="/static/scrapping/Images/logo.png" alt="logo"></a>
         <nav1>
             <ul class="nav__links">
-                <li><a href="{% url 'search' %}">Search</a></li>
-                <li><a href="#">Projects</a></li>
-                <li><a href="#">About</a></li>              
-        {% if user.is_authenticated %}
+                {% if user.is_authenticated %}
+            <li><a href="{% url 'search' %}">Search</a></li>
             <li><a href="{% url 'post-create' %}">Add post</a></li>
             <li><a href="{% url 'car-create' %}">Add car</a></li>
             <li><a href="{% url 'profile' %}">Profile</a></li>
@@ -31,10 +29,19 @@
             <li><a href="{% url 'login' %}">Login</a></li>
             <li><a href="{% url 'register' %}">Register</a></li> 
         {% endif %}
-            <a class="cta" href="#">Contact</a> 
-        </ul>
-        </nav1>       
-    </header1>
+            </ul>
+        </nav1>
+        <a class="cta" href="#">Contact</a>
+        <p onclick="openNav()" class="menu cta">Menu</p>
+    </header>
+    <div id="mobile__menu" class="overlay">
+        <a class="close" onclick="closeNav()">&times;</a>
+        <div class="overlay__content">
+            <a href="#">Services</a>
+            <a href="#">Projects</a>
+            <a href="#">About</a>
+        </div>
+    </div>
         {% if messages %}
             {% for message in messages %}
             <div class="alert alert-{{ message.tags }}">
@@ -43,19 +50,19 @@
             {% endfor %}
         {% endif %}
         {% block content %}
-        <h1 class="titleh1" style="font-size:4vw; margin-top: 50px;">What do you want to do ?</h1>
+        <h1 class="titleh1" style="font-size:3vw; margin-top: 50px;">What do you want to do ?</h1>
      <div class="flexbox-container">
             <div class="container"> 
                     <div class="card1"> 
                       <div class="face face1">
                           <div class="content">
                               <a href="{% url 'post-create' %}"><img src="media/images/transportation.png">
-                              <h3>Add car</h3> </a>
+                              <h3>Find car</h3> </a>
                           </div>
                       </div>
                       <div class="face face2" style="height: 50%;">
                           <div class="content">
-                            <a href="{% url 'car-create' %}">Add car</a>
+                            <a href="{% url 'cars' %}" style="text-align: center;">Go and check</a>
                           </div>
                       </div>
                   </div>
@@ -65,78 +72,151 @@
                     <div class="face face1">
                         <div class="content">
                             <img src="media/images/process.png">
-                            <h3>Add post</h3> 
+                            <h3>Add car</h3> 
                         </div>
                     </div>
                     <div class="face face2" style="height: 50%;">
                         <div class="content">
-                            <a href="{% url 'post-create' %}">Add post</a>
+                            <a href="{% url 'car-create' %}" style="text-align: center;">Say something to us !</a>
                         </div>
                     </div>
                 </div> 
             </div>
-        </div>
-        <h1 class="titleh1" style="font-size:4vw; margin-top: 50px;">Read posts !</h1>
-        <div class="flexbox-container1" style="margin-top: 150px;">
-        {% for post in posts %}  
-        <div class="row">
-            <div class="col s12 m6">
-              <div class="card blue-grey darken-1">
-                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="">
-                <div class="card-content white-text">
-                  <span class="card-title">{{ post.title }}</span>
-                  <a class="mr-2" href="#">{{ post.author }}</a>
-                  <p>{{ post.content }}</p>
-                </div>
-                <div class="card-action">
-                  <a href="{% url 'post_detail_with_comment' post.id %}">Go to post</a>
-                  <a href="{% url 'post_detail_with_comment' post.id %}">Comment post</a>
-                </div>
+            <div class="container"> 
+                <div class="card1"> 
+                  <div class="face face1">
+                      <div class="content">
+                          <a href="{% url 'post-create' %}"><img src="media/images/transportation.png">
+                          <h3>Find post</h3> </a>
+                      </div>
+                  </div>
+                  <div class="face face2" style="height: 50%;">
+                      <div class="content">
+                        <a href="{% url 'posts' %}" style="text-align: center;">Go and check</a>
+                      </div>
+                  </div>
               </div>
-            </div>
-          </div>
-          {%endfor%}
+        </div></a>
+              <div class="container"> 
+              <div class="card1"> 
+                <div class="face face1">
+                    <div class="content">
+                        <img src="media/images/process.png">
+                        <h3>Add post</h3> 
+                    </div>
+                </div>
+                <div class="face face2" style="height: 50%;">
+                    <div class="content">
+                        <a href="{% url 'post-create' %}" style="text-align: center;">Say something to us !</a>
+                    </div>
+                </div>
+            </div> 
         </div>
-        <div class="containerblog">
-            <div class="content">
-            <h1 class="titleh1" style="font-size:4vw; margin-top: 50px;">Check our user's cars !</h1>
-            </div>
-            <div class="flexbox-container">
-            </div>
+        </div>
+        <h1 class="titleh1" style="font-size:3vw; margin-top: 50px;">We work with...</h1>
+        <div class="flexbox-container">
+                <div>
+                <img class="workwith" src="media/images/olx.svg" alt="">
+                </div>
+                <div>
+                <img class="workwith" src="media/images/otokmoto.png" alt="">
+                </div>
+                <div>
+                <img class="workwith" src="media/images/autoscout.png" alt="">
+                </div>
+                <div>
+                <img class="workwith" src="media/images/mobile.png" alt="">
+                </div>
+                <div>
+                <img class="workwith" src="media/images/allegro.jpg" alt="">
+                </div>
             </div>
         </div>
-        <table class="table" style="margin-top: 2vh;">
-            <thead>
-            <tr>
-                <th scope="col">Photo</th>
-                <th scope="col">Mark</th>
-                <th scope="col">Model</th>
-                <th scope="col">Year</th>
-                <th scope="col">Petrol</th>
-                <th scope="col">Gear</th>
-                <th scope="col">Price</th>
-                </tr> 
-            </thead>
-            {% for car in cars %} 
-            <tbody>
-              <tr>
-                <th scope="row"><img src="{{ car.image.url }}" alt=""></th>
-                <td>{{ car.mark }}</td>
-                <td>{{ car.model }}</td>
-                <td>{{ car.year }}</td>
-                <td>{{ car.petrol }}</td>
-                <td>{{ car.gear }}</td>
-                <td>{{ car.price }}</td>
-              </tr>
-            </tbody>
-              {%endfor%}
-            </table>
-            {% endblock %}
-    </body>
+{% endblock %} 
+
+<footer class="page-footer foorte_properties pt-5 pt-lg-3">	
+	<div class="container-fluid text-center text-lg-left px-5  pb-sm-2">
+		<div class="row ">
+			<div class="col-1 d-none d-xl-block ">
+			</div>			
+			<div class="col-md-12 col-lg-4 col-xl ml-3 ml-lg-0">
+				<div class="row ">
+					<img src="/media/images/group4.png" alt="" >
+					
+						<div class="col text zawartoscBoxaStopki pt-3">
+							<div class="row" ><img id="napislogostopka" class="logoStopki" src="/media/images/logo.png" alt="" ></div>
+							<div class="row"><a id="napislogostopka">DaimondCar.com</a></div>
+						</div>
+				
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-4 col-xl ml-3 ml-lg-0">
+				<div class="row">
+					<img src="/media/images/group5.png" alt="" >
+					<div class="col text zawartoscBoxaStopki">
+						<div class="row" >
+							<a id="napislogostopka1">
+							Contact
+							</a>
+						</div>
+						<div class="row">
+							<a id="napislogostopka2">
+							tel.: 507 349 437
+							</a>
+							</div>
+							<div class="row">
+							<a id="napislogostopka2">
+							email: office@daimondCar.pl
+							</a>
+							</div>
+						
+					</div>
+				</div>
+			</div>
+			<div class="col-md-12 col-lg-4 col-xl ml-3 ml-lg-0">
+				<div class="row">
+					<img src="/media/images/group6.png" alt="" >
+					<div class="col-12 ml-1 zawartoscBoxaStopki2 text-center">
+						<div class="row mt-2">
+							<div class="col">
+								<a id="napislogostopka">
+								Find us here
+								</a>
+							</div>	
+							
+						</div>
+						<div class="row mt-2" style="margin:0 auto;">
+							<div class="col-3 col-md-3 testowa testowa1">
+								
+								
+					
+							</div>	
+							<div class="col-3 col-md-3 testowa testowa2">
+							
+					
+							</div>	
+							<div class="col-3 col-md-3 testowa testowa3">
+							
+						
+							</div>	
+							<div class="col-3 col-md-3 testowa testowa4">
+						
+							</div>	
+						</div>
+					</div>			
+				</div>
+			</div>
+			<div class="col-1 d-none d-xl-block">
+			</div>	
+		</div>
+	</div>
+</footer>
+
+</body>
     
-    <footer id="footer">
-        A sitemap is a list of pages on your website that can help search engines index pages or URLs they may not have otherwise discovered. Usually, the footer holds the HTML version of the sitemap. Though it may not end up being used by visitors, like the XML sitemap, including navigation information in your footer can help a search engine to index all of the pages on your website.
-    </footer>
+  
+  <!-- Footer -->
+    <script type="text/javascript" src="/static/scrapping/mobile.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <!-- Compiled and minified JavaScript -->

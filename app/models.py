@@ -26,15 +26,17 @@ GEAR = [
 
 class Post(models.Model):
     title = models.CharField(max_length=100)
-    content = models.TextField()
+    content = models.TextField(max_length=400)
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
+
 
     def __str__(self):
         return self.title
 
     def get_absolute_url(self):
         return reverse('post_detail_with_comment', kwargs={'pk': self.pk})
+
 
 class Comment(models.Model):
     content = models.CharField(max_length=100)
@@ -88,6 +90,7 @@ class Images(models.Model):
         return self.post.title + " Image"
 
 class Search(models.Model):
+    title = models.CharField(max_length=100, default='Search')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     mark = models.CharField(max_length=100)
     model = models.CharField(null=True, max_length=32)
@@ -98,7 +101,7 @@ class Search(models.Model):
     date_posted = models.DateTimeField(default=timezone.now)
     
     def __str__(self):
-        return self.post.author
+        return self.mark
 
    
 

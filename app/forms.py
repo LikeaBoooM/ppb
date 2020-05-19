@@ -1,6 +1,11 @@
 from django import forms
-from . models import Comment, NewCar, Search
+from . models import Comment, NewCar, Search, Post
 
+class NewPostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['title', 'content']
+        
 
 class NewCarForm(forms.ModelForm):
     class Meta:

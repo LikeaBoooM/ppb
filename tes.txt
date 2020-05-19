@@ -1,0 +1,11 @@
+{% if user.is_authenticated %}
+            <li><a href="{% url 'post-create' %}">Add post</a></li>
+            <li><a href="{% url 'car-create' %}">Add car</a></li>
+            <li><a href="{% url 'profile' %}">Profile</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            
+        {% else %}    
+            <li><a href="{% url 'login' %}">Login</a></li>
+            <li><a href="{% url 'register' %}">Register</a></li> 
+        {% endif %}
+            <a class="cta" href="#">Contact</a>
