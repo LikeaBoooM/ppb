@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404 , HttpResponseRedirect, redirect
 from . models import Post, Comment, Images, NewCar
 from . forms import CommentForm, NewCarForm, SearchForm, NewPostForm
 from . import scraper
+from django.db.models import Q
 from django.urls import reverse_lazy
 from django.forms import modelformset_factory
 from django.contrib.auth.decorators import login_required
@@ -94,7 +95,7 @@ class PostListView(ListView):
     template_name = 'app/posts.html'
     context_object_name = 'posts'
     ordering = ['-date_posted']
-    paginate_by = 5 
+    paginate_by = 2 
 
 class CarListView(ListView):
     model = NewCar
@@ -176,3 +177,16 @@ def search(request):
         
  
     return render(request, 'scrapping/search.html', {'car_list': car_list, 'form': form, 'dane': dane})
+
+def get_blog_quesryset(query=None):
+    queryset = []
+    quesries = query.split(" ")
+    for q in quesries:
+        posts = Post.objects.filter(
+            Q(title__icontains=q) |
+            Q(content__icontains=q)
+        ).distinct()
+        for post in posts:
+            queryset.append(post)
+    return list(set(queryset))
+      
