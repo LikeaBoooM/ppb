@@ -1,23 +1,46 @@
 {% extends 'scrapping/base.html' %}
 {% block content %}
+{% load crispy_forms_tags %}
+
+<div class="flexbox-container3">
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+  <fieldset class="form-group">
+      <legend class="border-bottom mb-4" style="color: black;">Find your dream car</legend>
+      {{form|crispy}}
+  </legend>
+  <div class="form-group">
+      <button class="btn btn-outline-info" type="submit">Find</button>
+  </div>
+</form>
+</div>
 <div class="flexbox-container">
-    {% for post in car_list|slice:":10" %}
-    <div class="container"> 
-      <div class="card"> 
-            <div class="face face1">
-                <div class="content">
-                    <img src="/static/scrapping/Images/sketch.png">
-                    <h3>{{ post.0 }}</h3> 
-                </div>
-            </div>
-            <div class="face face2">
-                <div class="content">
-                    <p>{{post.1}}</p>
-                    <a href="/">Find post</a>
-                </div>
-            </div>
-        </div> 
-      </div>
-    {%endfor%}
-    </div>
+    <table class="table" style="margin-top: 2vh;">
+        <thead>
+        <tr>
+            <th scope="col">Photo</th>
+            <th scope="col">Mark</th>
+            <th scope="col">Model</th>
+            <th scope="col">Petrol</th>
+            <th scope="col">Gear</th>
+            <th scope="col">Price</th>
+            <th scope="col">Desription</th>
+            </tr> 
+        </thead>
+        {% for post in car_list %}
+        <tbody>
+          <tr>
+            <th scope="row"><img src="{{ post.3 }}" alt="" style="max-width:200px;max-height:200px;"></th>
+            <td>{{ dane.0 }}</td>
+            <td>{{ dane.1 }}</td>
+            <td>{{ dane.3 }}</td>
+            <td>{{ dane.2 }}</td>
+            <td>{{ post.1 }}</td>
+            <td>{{ post.0 | slice:":70" }}</td>
+            <td><a href="{{post.2}}"><button class="btn btn-outline-info" type="submit">Go to car</button></a></td>
+          </tr>
+        </tbody>
+        {%endfor%}
+        </table>
+        </div>
 {% endblock %}

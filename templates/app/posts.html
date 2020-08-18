@@ -1,0 +1,56 @@
+{% extends 'scrapping/base.html' %}
+{% block content%}
+<h2 class="titleh1" style="font-size:4vw; margin-top: 50px;">Find posts !</h2>
+<<!-- Search form -->
+<form class="form-inline d-flex justify-content-center md-form form-sm mt-0">
+  <i class="fas fa-search" aria-hidden="true"></i>
+  <input class="form-control form-control-sm ml-3 w-75" type="text" placeholder="Search"
+    aria-label="Search" style="color: aliceblue; font-size: 25px;">
+</form>
+</div>
+</div>
+        <div class="flexbox-container1" style="margin-top: 150px;">
+        {% for post in posts %}  
+        <div class="row">
+            <div class="col s12 m6">
+              <div class="card blue-grey darken-1">
+                <img class="rounded-circle article-img" src="{{ post.author.profile.image.url }}" alt="">
+                <div class="card-content white-text">
+                  <h4>{{ post.date_posted }}</h4>
+                  <span class="card-title">{{ post.title }}</span>
+                  <a class="mr-2" href="#">{{ post.author }}</a>
+                  <p>{{ post.content }}</p>
+                </div>
+                <div class="card-action">
+                  <a href="{% url 'post_detail_with_comment' post.id %}">Go to post</a>
+                  <a href="{% url 'post_detail_with_comment' post.id %}">Comment post</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {%endfor%}
+        </div>
+    <div class="container">
+    {% if is_paginated %}
+    <ul class="pagination">
+      {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}"><button class="btn">&laquo;</button></li></a>
+      {% else %}
+        <li class="disabled"><span>&laquo;</span></li>
+      {% endif %}
+      {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+          <button class="btn" style="background-color: aqua;"><li><span>{{ i }} <span class="sr-only">(current)</span></span></li></button>
+        {% else %}
+          <li><a href="?page={{ i }}"><button class="btn" >{{ i }}</button></a></li>
+        {% endif %}
+      {% endfor %}
+      {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}"><button class="btn">&raquo;</button></li></a>
+      {% else %}
+        <li class="disabled"><span>&raquo;</span></li>
+      {% endif %}
+    </ul>
+  {% endif %}
+</div>
+    {% endblock %}

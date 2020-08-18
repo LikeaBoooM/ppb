@@ -1,23 +1,64 @@
-{% extends 'scrapping/base1.html' %}
+{% extends 'scrapping/base.html' %}
+{% load crispy_forms_tags %}
 {% block content %}
-    <div class="flexbox-container1">
-    <div>
-    <article class="media content-section">
-        <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}" alt="" ">
-        <div class="media-body">
-            <div class="article-metadata">
-            <a class="mr-2" href="#">{{ object.author }}</a>
-            <small class="text-muted">{{ object.date_posted|date:"F d, Y" }}</small>
-            {% if object.author == user %}
-            <div>
-            <a class="btn btn-outline-secondary" href="{% url 'post-update' object.id %}">Update post</a>
-            <a class="btn btn-outline-danger"href="{% url 'post-delete' object.id %}">Delete post</a>
+
+<div class="container my-4 px-4">
+  <div class="col-12 ">
+      <div class="row">
+          <div class="col-6 col-sm-4 col-md-4 col-lg-3 pt-sm-3 pt-lg-4 d-none d-sm-block wierszzapytania align-center">
+              <div class="row pl-sm-3 pl-lg-4 mb-4">
+                  <img class="zdjglowna"src="{{object.author.profile.image.url}}" alt="" >
+              </div>
+          </div>
+          <div class="col wierszzapytania pt-2 pl-4 pl-sm-0">
+              <a class="tytułpytania2" style="color: aliceblue; font-size: 24px;">{{object.title}}</a>
+
+              <hr />
+              <div class="row pr-sm-5 pr-3 pl-3 pb-3" style="color: #9e9e9e; font-size: 22px;">{{ object.content }}</div>
+          </div>
+      </div>
+    
+      <div class="row">
+          {% if object.author == user %}
+              <div class="col wierszzapytania text-right pb-3">
+                  <a class="btn btn-warning" href="{% url 'post-update' object.id %}">Edycja pytania</a>
+                  <a class="btn btn-warning"href="{% url 'post-delete' object.id %}">Usuń pytanie</a>
+              </div>
+          {% elif request.user.is_superuser%}
+              <div class="col wierszzapytania text-right pb-3">
+                  <a class="btn btn-warning"href="{% url 'post-delete' object.id %}">Usuń pytanie</a>
+              </div>
+          {% endif %}
+      </div>
+    
+
+    
+			<div style="color:#ffffffd2;">
+			<div class="row py-3">
+				<hr style="width:100%;text-align:left;margin-left:0">
             </div>
-            {% endif %}
+            <h1 class="titleh1" style="margin-top: 50px; color: #9e9e9e;">Comments</h1>
+      {% for comment in comments %}
+      <div class="row">
+          <div class="zdj_prof">
+            <img class="zdjodpowiedzi" src="{{ comment.author.profile.image.url }}" alt="">
+          </>
         </div>
-            <h2 class="article-title">{{ object.title }}</h2>
-            <p class="article-content">{{ object.content }}</p>
+        <div class="col wierszzapytania pt-2 pl-4 pl-sm-0" style="font-size: 18px; margin-left: 3px;">
+          <div class="row pl-3">{{ comment.author }} odpowiedział(a):</div>
+          <div class="row pr-sm-5 pr-3 pl-3 pb-3" style="font-size: 22px;">{{ comment.content|linebreaks }}</div>
         </div>
-        </article>
-    </div>
+      </div>
+      {% endfor %}
+      {% if user.is_authenticated %}
+    <h1 class="titleh1" style="margin-top: 50px; color: #9e9e9e;">Add coment</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ commentForm|crispy }}
+    <input type="submit" value="Dodaj komentarz" class="btn btn btn-warning">
+    </form>
+    {% endif %}
+  </div>
+</div>
+</div>
 {% endblock %}
